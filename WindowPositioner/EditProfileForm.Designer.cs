@@ -36,15 +36,19 @@
             // 
             // programProcessesListBox
             // 
+            this.programProcessesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.programProcessesListBox.FormattingEnabled = true;
             this.programProcessesListBox.Location = new System.Drawing.Point(12, 41);
             this.programProcessesListBox.Name = "programProcessesListBox";
-            this.programProcessesListBox.Size = new System.Drawing.Size(156, 95);
+            this.programProcessesListBox.Size = new System.Drawing.Size(191, 121);
             this.programProcessesListBox.TabIndex = 0;
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(12, 12);
+            this.addButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.addButton.Location = new System.Drawing.Point(28, 12);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
             this.addButton.TabIndex = 1;
@@ -54,7 +58,8 @@
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(93, 12);
+            this.removeButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.removeButton.Location = new System.Drawing.Point(109, 12);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(75, 23);
             this.removeButton.TabIndex = 2;
@@ -63,8 +68,9 @@
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(12, 142);
+            this.button1.Location = new System.Drawing.Point(128, 171);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -75,7 +81,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(180, 174);
+            this.ClientSize = new System.Drawing.Size(215, 206);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.addButton);

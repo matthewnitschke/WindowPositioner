@@ -1,61 +1,99 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using WindowPositioner.Models;
 
 namespace WindowPositioner
 {
     public static class WindowAccessor
     {
 
-        public static List<ProgramProcess> GetOpenWindows()
+        public static void OpenPrograms(List<Window> windows)
         {
-            IntPtr shellWindow = GetShellWindow();
-            List<ProgramProcess> processes = new List<ProgramProcess>();
-
-            EnumWindows(delegate (IntPtr hWnd, int lParam)
+            foreach(Window window in windows)
             {
-                if (hWnd == shellWindow) return true;
-                if (!IsWindowVisible(hWnd)) return true;
-
-                int length = GetWindowTextLength(hWnd);
-                if (length == 0) return true;
-
-                StringBuilder builder = new StringBuilder(length);
-                GetWindowText(hWnd, builder, length + 1);
-
-                processes.Add(new ProgramProcess()
-                {
-                    HWND = hWnd,
-                    ProcessName = builder.ToString()
-                });
-                return true;
-
-            }, 0);
-
-
-
-            return processes;
+                Process.Start(@"C:\Users\Matthew\AppData\Roaming\Spotify\Spotify.exe", null);
+            }
         }
 
+        public static List<Window> GetInstalledPrograms()
+        {
+            string displayName;
+            RegistryKey key;
 
-        [DllImport("USER32.DLL")]
-        private static extern IntPtr GetShellWindow();
+            List<Window> retWindows = new List<Window>();
 
-        private delegate bool EnumWindowsProc(IntPtr hWnd, int lParam);
+            // search in: CurrentUser
+            key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall");
+            foreach (String keyName in key.GetSubKeyNames())
+            {
+                RegistryKey subkey = key.OpenSubKey(keyName);
+                displayName = subkey.GetValue("DisplayName") as string;
+                if (displayName != null)
+                {
+                    retWindows.Add(new Window()
+                    {
+                        ProcessName = displayName
+                    });
+                }
+               
+            }
 
-        [DllImport("USER32.DLL")]
-        private static extern bool EnumWindows(EnumWindowsProc enumFunc, int lParam);
+            // search in: LocalMachine_32
+            key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall");
+            foreach (String keyName in key.GetSubKeyNames())
+            {
+                RegistryKey subkey = key.OpenSubKey(keyName);
+                displayName = subkey.GetValue("DisplayName") as string;
+                if (displayName != null)
+                {
+                    retWindows.Add(new Window()
+                    {
+                        ProcessName = displayName
+                    });
+                }
+            }
 
-        [DllImport("USER32.DLL")]
-        private static extern bool IsWindowVisible(IntPtr hWnd);
+            // search in: LocalMachine_64
+            key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall");
+            foreach (String keyName in key.GetSubKeyNames())
+            {
+                RegistryKey subkey = key.OpenSubKey(keyName);
+                displayName = subkey.GetValue("DisplayName") as string;
+                if (displayName != null)
+                {
+                    retWindows.Add(new Window()
+                    {
+                        ProcessName = displayName
+                    });
+                }
+            }
 
-        [DllImport("USER32.DLL")]
-        private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+            // NOT FOUND
+            return retWindows;
+        }
 
-        [DllImport("USER32.DLL")]
-        private static extern int GetWindowTextLength(IntPtr hWnd);
+        public static string GetApplicationPath(string ExeName)
+        {
+            try
+            {
+                RegistryKey OurKey = Registry.LocalMachine;
+                OurKey = OurKey.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\App Paths\" + ExeName, true);
+                if (OurKey != null)
+                    return OurKey.GetValue("").ToString();
+                else
+                    return "";
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+        }
+
     }
 }

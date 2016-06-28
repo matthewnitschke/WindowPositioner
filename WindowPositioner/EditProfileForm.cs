@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WindowPositioner.Models;
 using System.Windows.Forms;
 
 namespace WindowPositioner
@@ -25,7 +19,9 @@ namespace WindowPositioner
 
         private void InitializeData()
         {
-            foreach(ProgramProcess process in EditingProfile.ProgramProcesses)
+            programProcessesListBox.Items.Clear();
+
+            foreach(Window process in EditingProfile.Windows)
             {
                 programProcessesListBox.Items.Add(process);
             }
@@ -37,8 +33,10 @@ namespace WindowPositioner
 
             if (selectProcessDialog.ShowDialog(this) == DialogResult.OK)
             {
-                programProcessesListBox.Items.Add(selectProcessDialog.GetSelectedProcess());
+                EditingProfile.Windows.Add(selectProcessDialog.GetSelectedProcess());
             }
+
+            InitializeData();
         }
     }
 }

@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Web.Script.Serialization;
 using System.Windows.Forms;
-using WindowScrape.Types;
+using WindowPositioner.Models;
 
 namespace WindowPositioner
 {
@@ -19,6 +13,9 @@ namespace WindowPositioner
         public mainWindow()
         {
             InitializeComponent();
+            LoadSavedData();
+
+            string a = WindowAccessor.GetApplicationPath("notepad.exe");
         }
 
         private void newButton_Click(object sender, EventArgs e)
@@ -30,13 +27,24 @@ namespace WindowPositioner
             if (addProfileDialog.ShowDialog(this) == DialogResult.OK)
             {
                 newProfileName = addProfileDialog.GetProfileName();
-                profilesComboBox.Items.Add(new Profile() {
+                profilesComboBox.Items.Add(new Profile()
+                {
                     ProfileName = newProfileName
                 });
+
+                Save();
             }
 
 
             addProfileDialog.Dispose();
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            profilesComboBox.Items.RemoveAt(profilesComboBox.SelectedIndex);
+            profilesComboBox.ResetText();
+
+            Save();
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -44,28 +52,42 @@ namespace WindowPositioner
             Profile selectedProfile = (Profile)profilesComboBox.Items[profilesComboBox.SelectedIndex];
 
             EditProfileForm editProfileDialog = new EditProfileForm(selectedProfile);
-            
+
             if (editProfileDialog.ShowDialog(this) == DialogResult.OK)
             {
+                Save();
+            }
+
+        }
+
+        private void testButton_Click(object sender, EventArgs e)
+        {
+            Profile selectedProfile = (Profile)profilesComboBox.Items[profilesComboBox.SelectedIndex];
+
+            WindowAccessor.OpenPrograms(selectedProfile.Windows);
+        }
+
+
+        public void LoadSavedData()
+        {
+            try
+            {
+                string readText = File.ReadAllText("save.json");
+                List<Profile> profiles = new JavaScriptSerializer().Deserialize<List<Profile>>(readText);
+                profilesComboBox.Items.AddRange(profiles.ToArray());
 
             }
-            
+            catch (ArgumentException){ }
+            catch (FileNotFoundException) { }
+
         }
-    }
 
-    public class Profile
-    {
-        public List<ProgramProcess> ProgramProcesses = new List<ProgramProcess>();
-        public string ProfileName { get; set; }
-
-        public override string ToString()
+        public void Save()
         {
-            return ProfileName;
+            string createText = new JavaScriptSerializer().Serialize(profilesComboBox.Items);
+            File.WriteAllText("save.json", createText);
         }
-    }
 
-    public class ProgramProcess {
-        public IntPtr HWND { get; set; }
-        public string ProcessName { get; set; }
+        
     }
 }
