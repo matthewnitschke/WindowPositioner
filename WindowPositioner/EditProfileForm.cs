@@ -33,7 +33,8 @@ namespace WindowPositioner
 
             if (selectProcessDialog.ShowDialog(this) == DialogResult.OK)
             {
-                EditingProfile.Windows.Add(selectProcessDialog.GetSelectedProcess());
+                EditingProfile.Windows.Add(selectProcessDialog.GetSelectedWindow());
+                
             }
 
             InitializeData();

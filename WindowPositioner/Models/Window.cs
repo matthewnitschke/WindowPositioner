@@ -9,7 +9,9 @@ namespace WindowPositioner.Models
     public class Window
     {
         public string ProcessName { get; set; }
+        public string ExecutablePath { get; set; }
         public int HWND { get; set; }
+
 
         override
         public string ToString()

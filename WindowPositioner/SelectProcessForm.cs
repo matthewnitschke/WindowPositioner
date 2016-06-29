@@ -15,51 +15,15 @@ namespace WindowPositioner
         public SelectProcessForm()
         {
             InitializeComponent();
-
-            GetCurrentWindows();
         }
 
-        public void GetCurrentWindows()
+        public Window GetSelectedWindow()
         {
-            currentWindowsListBox.Items.Clear();
-
-            List<Window> currentProcesses = WindowAccessor.GetInstalledPrograms();
-
-            foreach(Window process in currentProcesses)
+            return new Window()
             {
-                currentWindowsListBox.Items.Add(process);
-            }
-        }
-
-        public Window GetSelectedProcess()
-        {
-            return (Window)currentWindowsListBox.Items[currentWindowsListBox.SelectedIndex];
-        }
-
-        private void refreshButton_Click(object sender, EventArgs e)
-        {
-            GetCurrentWindows();
-        }
-
-        private void searchButton_Click(object sender, EventArgs e)
-        {
-            string searchText = searchTextBox.Text;
-            List<Window> searchedWindows = new List<Window>();
-
-            foreach(Window window in currentWindowsListBox.Items)
-            {
-                if (window.ProcessName.ToLower().Contains(searchText.ToLower()))
-                {
-                    searchedWindows.Add(window);
-                }
-            }
-
-            currentWindowsListBox.Items.Clear();
-
-            foreach (Window process in searchedWindows)
-            {
-                currentWindowsListBox.Items.Add(process);
-            }
+                ExecutablePath = urlTextBox.Text,
+                ProcessName = programNameTextBox.Text
+            };
         }
     }
 }

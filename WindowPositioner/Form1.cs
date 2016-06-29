@@ -14,8 +14,6 @@ namespace WindowPositioner
         {
             InitializeComponent();
             LoadSavedData();
-
-            string a = WindowAccessor.GetApplicationPath("notepad.exe");
         }
 
         private void newButton_Click(object sender, EventArgs e)
