@@ -39,5 +39,13 @@ namespace WindowPositioner
 
             InitializeData();
         }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            EditingProfile.Windows.RemoveAt(programProcessesListBox.SelectedIndex);
+            programProcessesListBox.Items.RemoveAt(programProcessesListBox.SelectedIndex);
+            programProcessesListBox.ClearSelected();
+
+        }
     }
 }
