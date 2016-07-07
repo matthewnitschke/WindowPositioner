@@ -1,6 +1,6 @@
 ﻿namespace WindowPositioner
 {
-    partial class SelectProcessForm
+    partial class AddProcessForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +31,10 @@
             this.addButton = new System.Windows.Forms.Button();
             this.urlTextBox = new System.Windows.Forms.TextBox();
             this.programNameTextBox = new System.Windows.Forms.TextBox();
+            this.windowX = new System.Windows.Forms.TextBox();
+            this.windowY = new System.Windows.Forms.TextBox();
+            this.windowWidth = new System.Windows.Forms.TextBox();
+            this.windowHeight = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // addButton
@@ -48,7 +52,7 @@
             // 
             this.urlTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.urlTextBox.Location = new System.Drawing.Point(12, 46);
+            this.urlTextBox.Location = new System.Drawing.Point(12, 67);
             this.urlTextBox.Name = "urlTextBox";
             this.urlTextBox.Size = new System.Drawing.Size(248, 20);
             this.urlTextBox.TabIndex = 2;
@@ -65,11 +69,43 @@
             this.programNameTextBox.TabIndex = 3;
             this.programNameTextBox.Text = "Atom";
             // 
+            // windowX
+            // 
+            this.windowX.Location = new System.Drawing.Point(13, 39);
+            this.windowX.Name = "windowX";
+            this.windowX.Size = new System.Drawing.Size(28, 20);
+            this.windowX.TabIndex = 4;
+            // 
+            // windowY
+            // 
+            this.windowY.Location = new System.Drawing.Point(47, 39);
+            this.windowY.Name = "windowY";
+            this.windowY.Size = new System.Drawing.Size(28, 20);
+            this.windowY.TabIndex = 5;
+            // 
+            // windowWidth
+            // 
+            this.windowWidth.Location = new System.Drawing.Point(81, 39);
+            this.windowWidth.Name = "windowWidth";
+            this.windowWidth.Size = new System.Drawing.Size(28, 20);
+            this.windowWidth.TabIndex = 6;
+            // 
+            // windowHeight
+            // 
+            this.windowHeight.Location = new System.Drawing.Point(115, 39);
+            this.windowHeight.Name = "windowHeight";
+            this.windowHeight.Size = new System.Drawing.Size(28, 20);
+            this.windowHeight.TabIndex = 7;
+            // 
             // SelectProcessForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(271, 78);
+            this.ClientSize = new System.Drawing.Size(271, 99);
+            this.Controls.Add(this.windowHeight);
+            this.Controls.Add(this.windowWidth);
+            this.Controls.Add(this.windowY);
+            this.Controls.Add(this.windowX);
             this.Controls.Add(this.programNameTextBox);
             this.Controls.Add(this.urlTextBox);
             this.Controls.Add(this.addButton);
@@ -84,5 +120,9 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.TextBox urlTextBox;
         private System.Windows.Forms.TextBox programNameTextBox;
+        private System.Windows.Forms.TextBox windowX;
+        private System.Windows.Forms.TextBox windowY;
+        private System.Windows.Forms.TextBox windowWidth;
+        private System.Windows.Forms.TextBox windowHeight;
     }
 }

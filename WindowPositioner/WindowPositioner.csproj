@@ -69,15 +69,16 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bounds.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Window.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SelectProcessForm.cs">
+    <Compile Include="AddProcessForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SelectProcessForm.Designer.cs">
-      <DependentUpon>SelectProcessForm.cs</DependentUpon>
+    <Compile Include="AddProcessForm.Designer.cs">
+      <DependentUpon>AddProcessForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WindowAccessor.cs" />
     <EmbeddedResource Include="AddProfileForm.resx">
@@ -98,8 +99,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SelectProcessForm.resx">
-      <DependentUpon>SelectProcessForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddProcessForm.resx">
+      <DependentUpon>AddProcessForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".gitignore" />
     <None Include="Properties\Settings.settings">

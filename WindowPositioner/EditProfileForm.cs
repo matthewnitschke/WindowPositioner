@@ -29,7 +29,7 @@ namespace WindowPositioner
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            SelectProcessForm selectProcessDialog = new SelectProcessForm();
+            AddProcessForm selectProcessDialog = new AddProcessForm();
 
             if (selectProcessDialog.ShowDialog(this) == DialogResult.OK)
             {
