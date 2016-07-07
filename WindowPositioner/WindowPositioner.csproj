@@ -80,6 +80,12 @@
     <Compile Include="AddProcessForm.Designer.cs">
       <DependentUpon>AddProcessForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectOpenProcessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectOpenProcessForm.Designer.cs">
+      <DependentUpon>SelectOpenProcessForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowAccessor.cs" />
     <EmbeddedResource Include="AddProfileForm.resx">
       <DependentUpon>AddProfileForm.cs</DependentUpon>
@@ -101,6 +107,9 @@
     </Compile>
     <EmbeddedResource Include="AddProcessForm.resx">
       <DependentUpon>AddProcessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectOpenProcessForm.resx">
+      <DependentUpon>SelectOpenProcessForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".gitignore" />
     <None Include="Properties\Settings.settings">

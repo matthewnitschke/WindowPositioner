@@ -35,13 +35,14 @@
             this.windowY = new System.Windows.Forms.TextBox();
             this.windowWidth = new System.Windows.Forms.TextBox();
             this.windowHeight = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // addButton
             // 
             this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.addButton.Location = new System.Drawing.Point(184, 13);
+            this.addButton.Location = new System.Drawing.Point(150, 13);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
             this.addButton.TabIndex = 1;
@@ -52,9 +53,9 @@
             // 
             this.urlTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.urlTextBox.Location = new System.Drawing.Point(12, 67);
+            this.urlTextBox.Location = new System.Drawing.Point(12, 70);
             this.urlTextBox.Name = "urlTextBox";
-            this.urlTextBox.Size = new System.Drawing.Size(248, 20);
+            this.urlTextBox.Size = new System.Drawing.Size(214, 20);
             this.urlTextBox.TabIndex = 2;
             this.urlTextBox.Text = "C:\\Users\\mnitschke\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\GitHub, " +
     "Inc\\Atom.lnk";
@@ -65,43 +66,55 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.programNameTextBox.Location = new System.Drawing.Point(13, 13);
             this.programNameTextBox.Name = "programNameTextBox";
-            this.programNameTextBox.Size = new System.Drawing.Size(165, 20);
+            this.programNameTextBox.Size = new System.Drawing.Size(131, 20);
             this.programNameTextBox.TabIndex = 3;
             this.programNameTextBox.Text = "Atom";
             // 
             // windowX
             // 
-            this.windowX.Location = new System.Drawing.Point(13, 39);
+            this.windowX.Location = new System.Drawing.Point(13, 44);
             this.windowX.Name = "windowX";
-            this.windowX.Size = new System.Drawing.Size(28, 20);
+            this.windowX.Size = new System.Drawing.Size(29, 20);
             this.windowX.TabIndex = 4;
             // 
             // windowY
             // 
-            this.windowY.Location = new System.Drawing.Point(47, 39);
+            this.windowY.Location = new System.Drawing.Point(47, 44);
             this.windowY.Name = "windowY";
-            this.windowY.Size = new System.Drawing.Size(28, 20);
+            this.windowY.Size = new System.Drawing.Size(29, 20);
             this.windowY.TabIndex = 5;
             // 
             // windowWidth
             // 
-            this.windowWidth.Location = new System.Drawing.Point(81, 39);
+            this.windowWidth.Location = new System.Drawing.Point(81, 44);
             this.windowWidth.Name = "windowWidth";
-            this.windowWidth.Size = new System.Drawing.Size(28, 20);
+            this.windowWidth.Size = new System.Drawing.Size(29, 20);
             this.windowWidth.TabIndex = 6;
             // 
             // windowHeight
             // 
-            this.windowHeight.Location = new System.Drawing.Point(115, 39);
+            this.windowHeight.Location = new System.Drawing.Point(115, 44);
             this.windowHeight.Name = "windowHeight";
-            this.windowHeight.Size = new System.Drawing.Size(28, 20);
+            this.windowHeight.Size = new System.Drawing.Size(29, 20);
             this.windowHeight.TabIndex = 7;
             // 
-            // SelectProcessForm
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(150, 42);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Select Open ";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // AddProcessForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(271, 99);
+            this.ClientSize = new System.Drawing.Size(237, 102);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.windowHeight);
             this.Controls.Add(this.windowWidth);
             this.Controls.Add(this.windowY);
@@ -109,7 +122,7 @@
             this.Controls.Add(this.programNameTextBox);
             this.Controls.Add(this.urlTextBox);
             this.Controls.Add(this.addButton);
-            this.Name = "SelectProcessForm";
+            this.Name = "AddProcessForm";
             this.Text = "SelectProcessForm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -124,5 +137,6 @@
         private System.Windows.Forms.TextBox windowY;
         private System.Windows.Forms.TextBox windowWidth;
         private System.Windows.Forms.TextBox windowHeight;
+        private System.Windows.Forms.Button button1;
     }
 }

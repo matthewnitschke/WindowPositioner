@@ -36,6 +36,7 @@ namespace WindowPositioner
             ShowWindow = 0x0040,
         }
 
+
         public static void OpenProgram(Window window)
         {
             Process p = Process.Start(window.ExecutablePath, null);
@@ -47,7 +48,6 @@ namespace WindowPositioner
 
             SetWindowPos(p.MainWindowHandle, IntPtr.Zero, window.WindowBounds.X, window.WindowBounds.Y, window.WindowBounds.Width, window.WindowBounds.Height, 0);            
         }
-        
 
         public static void OpenPrograms(List<Window> windows)
         {
@@ -57,5 +57,61 @@ namespace WindowPositioner
                 thread.Start();
             }
         }
+
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RECT
+        {
+            public int Left;        // x position of upper-left corner
+            public int Top;         // y position of upper-left corner
+            public int Right;       // x position of lower-right corner
+            public int Bottom;      // y position of lower-right corner
+        }
+
+        public static List<Window> GetOpenWindows()
+        {
+            List<Window> returnWindows = new List<Window>();
+
+            foreach (Process process in Process.GetProcesses())
+            {
+                RECT rct;
+
+                GetWindowRect(process.MainWindowHandle, out rct);
+
+                var windowBounds = new Bounds()
+                {
+                    X = rct.Left,
+                    Y = rct.Top,
+                    Width = rct.Right - rct.Left + 1,
+                    Height = rct.Bottom - rct.Top + 1
+                };
+
+                string exePath = "";
+                try
+                {
+                    exePath = process.MainModule.FileName;
+                }
+                catch (System.ComponentModel.Win32Exception)
+                {
+                    exePath = "Not Found";
+                }
+               
+                
+                returnWindows.Add(new Window()
+                {
+                    ProcessName = process.ProcessName,
+                    ExecutablePath = exePath,
+                    WindowBounds = windowBounds
+                });
+            }
+
+            return returnWindows;
+
+        }
+
     }
 }

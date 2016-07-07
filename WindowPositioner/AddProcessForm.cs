@@ -33,5 +33,27 @@ namespace WindowPositioner
                 }
             };
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SelectOpenProcessForm selectOpenProcessDialog = new SelectOpenProcessForm();
+
+            if (selectOpenProcessDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                Window selectedWindow = selectOpenProcessDialog.GetSelectedWindow();
+
+                urlTextBox.Text = selectedWindow.ExecutablePath;
+                programNameTextBox.Text = selectedWindow.ProcessName;
+
+                windowX.Text = selectedWindow.WindowBounds.X.ToString();
+                windowY.Text = selectedWindow.WindowBounds.Y.ToString();
+                windowWidth.Text = selectedWindow.WindowBounds.Width.ToString();
+                windowHeight.Text = selectedWindow.WindowBounds.Height.ToString();
+
+            }
+
+
+            selectOpenProcessDialog.Dispose();
+        }
     }
 }
