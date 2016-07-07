@@ -57,8 +57,6 @@
             this.urlTextBox.Name = "urlTextBox";
             this.urlTextBox.Size = new System.Drawing.Size(214, 20);
             this.urlTextBox.TabIndex = 2;
-            this.urlTextBox.Text = "C:\\Users\\mnitschke\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\GitHub, " +
-    "Inc\\Atom.lnk";
             // 
             // programNameTextBox
             // 
@@ -68,7 +66,6 @@
             this.programNameTextBox.Name = "programNameTextBox";
             this.programNameTextBox.Size = new System.Drawing.Size(131, 20);
             this.programNameTextBox.TabIndex = 3;
-            this.programNameTextBox.Text = "Atom";
             // 
             // windowX
             // 
